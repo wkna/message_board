@@ -13,10 +13,15 @@ import javax.persistence.Table;
 @Entity
 @NamedQueries({
     @NamedQuery(
-        name = "getAllMessages",
-        query = "SELECT m FROM Message AS m ORDER BY m.id DESC"
-    )
+            name = "getAllMessages",
+            query = "SELECT m FROM Message AS m ORDER BY m.id DESC"
+            ),
+    @NamedQuery(
+            name = "getMessagesCount",
+            query = "SELECT COUNT(m) FROM Message AS m"
+            )
 })
+
 @Table(name = "messages")
 public class Message {
     @Id
@@ -35,6 +40,7 @@ public class Message {
 
     @Column(name = "updated_at", nullable = false)
     private Timestamp updated_at;
+
 
     public Integer getId() {
         return id;
