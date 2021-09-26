@@ -18,7 +18,7 @@ import utils.DBUtil;
  */
 @WebServlet("/ShowServlet")
 public class ShowServlet extends HttpServlet {
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
     /**
      * @see HttpServlet#HttpServlet()
@@ -28,21 +28,21 @@ public class ShowServlet extends HttpServlet {
         // TODO Auto-generated constructor stub
     }
 
-	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
-	 */
+    /**
+     * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+     */
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	        EntityManager em = DBUtil.createEntityManager();
+            EntityManager em = DBUtil.createEntityManager();
 
-	        // 該当のIDのメッセージ1件のみをデータベースから取得
-	        Message m = em.find(Message.class, Integer.parseInt(request.getParameter("id")));
+            // 該当のIDのメッセージ1件のみをデータベースから取得
+            Message m = em.find(Message.class, Integer.parseInt(request.getParameter("id")));
 
-	        em.close();
+            em.close();
 
-	        // メッセージデータをリクエストスコープにセットしてshow.jspを呼び出す
-	        request.setAttribute("message", m);
+            // メッセージデータをリクエストスコープにセットしてshow.jspを呼び出す
+            request.setAttribute("message", m);
 
-	        RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/messages/show.jsp");
-	        rd.forward(request, response);
-	    }
+            RequestDispatcher rd = request.getRequestDispatcher("/WEB-INF/views/messages/show.jsp");
+            rd.forward(request, response);
+        }
 }
